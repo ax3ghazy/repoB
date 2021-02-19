@@ -91,7 +91,7 @@ def main(args):
         print('-'*20, flush=True)
 
         # Get us back to a very clean tree.
-        git('reset --hard HEAD', git_out_dir)
+        # git('reset --hard HEAD', git_out_dir)
         git('clean -f', git_out_dir)
         git('clean -x -f', git_out_dir)
 
