@@ -57,21 +57,19 @@ def main(args):
     origin_url = subprocess.check_output('git remote get-url origin', shell=True)
     origin_url = origin_url.decode('utf-8').strip()
 
-    git_out_dir = os.path.curdir
-
     print()
 
     print()
 
-    git('fetch origin', git_out_dir)
+    git('fetch origin', git_root)
 
-    git('fetch origin --tags', git_out_dir)
+    git('fetch origin --tags', git_root)
 
-    git('status', git_out_dir)
+    git('status', git_root)
 
     print('-'*20, flush=True)
 
-    tags = subprocess.check_output('git tag -l', shell=True, cwd=git_out_dir)
+    tags = subprocess.check_output('git tag -l', shell=True, cwd=git_root)
 
     tags = tags.decode('utf-8')
 
@@ -91,12 +89,12 @@ def main(args):
         print('-'*20, flush=True)
 
         # Get us back to a very clean tree.
-        # git('reset --hard HEAD', git_out_dir)
-        git('clean -f', git_out_dir)
-        git('clean -x -f', git_out_dir)
+        # git('reset --hard HEAD', git_root)
+        git('clean -f', git_root)
+        git('clean -x -f', git_root)
 
         # Checkout the right branch
-        git('checkout {0}'.format(v_branch), git_out_dir)
+        git('checkout {0}'.format(v_branch), git_root)
         if v in [(0,0,9)]:
             continue
         elif v in [(0, 10, 0), (0, 10, 1), (0, 11, 0), (0, 12, 0), (0, 12, 1), (0, 13, 0)]:
@@ -108,16 +106,16 @@ def main(args):
 
         # Update the contents
         if v == versions[apply_idx]:
-            if git('am {}'.format(patchfile), git_out_dir, can_fail=True) == False:
+            if git('am {}'.format(patchfile), git_root, can_fail=True) == False:
                 apply_idx+=1
             continue
 
         # Create the merge commit
-        git('merge {} --no-ff --no-commit --strategy=recursive'.format(diff_pos), git_out_dir)
-        git('commit -C HEAD@{1}', git_out_dir)
+        git('merge {} --no-ff --no-commit --strategy=recursive'.format(diff_pos), git_root)
+        git('commit -C HEAD@{1}', git_root)
 
-    git('branch -D master', git_out_dir, can_fail=True)
-    git('branch master', git_out_dir)
+    git('branch -D master', git_root, can_fail=True)
+    git('branch master', git_root)
 
     print('='*75, flush=True)
 
