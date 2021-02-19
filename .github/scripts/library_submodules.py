@@ -57,7 +57,7 @@ def git(cmd, gitdir, can_fail=False, **kw):
     if DATE:
         env['GIT_AUTHOR_DATE'] = DATE
         env['GIT_COMMITTER_DATE'] = DATE
-    env['GIT_COMMITTER_NAME'] = "Github Actions Bot"
+    env['GIT_COMMITTER_NAME'] = "GitHub Actions Bot"
     env['GIT_COMMITTER_EMAIL'] = 'actions_bot@github.com'
 
     if 'push' in cmd:

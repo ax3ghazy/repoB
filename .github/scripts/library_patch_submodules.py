@@ -54,9 +54,6 @@ def main(args):
     git_root = subprocess.check_output('git rev-parse --show-toplevel', shell=True)
     git_root = git_root.decode('utf-8').strip()
 
-    origin_url = subprocess.check_output('git remote get-url origin', shell=True)
-    origin_url = origin_url.decode('utf-8').strip()
-
     print()
 
     print()
