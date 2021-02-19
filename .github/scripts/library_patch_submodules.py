@@ -78,7 +78,6 @@ def main(args):
     versions = [tuple(int(i) for i in v[1:].split('.')) for v in tags.split()]
     if (0,0,0) in versions:
         versions.remove((0,0,0))
-    apply_idx=0
     for i, v in enumerate(versions):
         pv = previous_v(v, versions)
         ov = out_v(v, versions)
@@ -107,9 +106,8 @@ def main(args):
         diff_pos = 'branch-{}.{}.{}'.format(*pv)
 
         # Update the contents
-        if v == versions[apply_idx]:
-            if git('am {}'.format(patchfile), git_out_dir, can_fail=True) == False:
-                apply_idx+=1
+        if v == versions[0]:
+            git('am {}'.format(patchfile), git_out_dir)
             continue
 
         # Create the merge commit
