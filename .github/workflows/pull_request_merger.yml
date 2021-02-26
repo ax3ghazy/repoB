@@ -1,8 +1,11 @@
 name: Pull Request Internal Merger
 
 on:
-  schedule:
-    - cron: '*/1 * * * *'
+  #schedule:
+  #  - cron: '*/1 * * * *'
+  push:
+    branches:
+      - master
 
 jobs:
   build:
