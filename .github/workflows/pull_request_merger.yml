@@ -13,7 +13,7 @@ jobs:
           fetch-depth: '50'
 
       - name: Print PRs
-        run: gh pr list --state open
+        run: gh pr list --state open -R ${{ github.event.pull_request.base.repo.full_name }}
 
       - name: Run The Pull Request Merger
         uses: agorararmard/pull-request-merger-action@main
