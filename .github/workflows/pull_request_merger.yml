@@ -11,10 +11,12 @@ jobs:
         with:
           ref: master
           fetch-depth: '50'
+      - name: Try PRs
+        run: curl -sS -g -XGET 'https://github.com/${{ github.event.pull_request.base.repo.full_name }}/pulls' | grep -o -E "pull/[[:digit:]]+" | sort | uniq
 
       - name: Print PRs
         run: |
-          echo "$GITHUB_TOKEN" | gh auth login --with-token  --password-stdin
+          echo "$GITHUB_TOKEN" | gh auth login --with-token
           gh pr list --state open -R ${{ github.event.pull_request.base.repo.full_name }}
 
       - name: Run The Pull Request Merger
