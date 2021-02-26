@@ -18,6 +18,3 @@ jobs:
       - name: Run The Pull Request Merger
         uses: agorararmard/pull-request-merger-action@main
 
-      - name: Label Commenter
-        uses: peaceiris/actions-label-commenter@v1
-
