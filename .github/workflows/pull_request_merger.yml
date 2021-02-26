@@ -1,8 +1,6 @@
 name: CI
 
-on:
-  pull_request:
-    types: [ labeled ]
+on: [pull_request]
 
 jobs:
   build:
@@ -14,8 +12,6 @@ jobs:
           ref: master
           fetch-depth: '50'
 
-      - name: GitHub CLI Setup Action
-        uses: Monorepo-Actions/setup-gh-cli@v1.0.0
       - name: Print PRs
         run: gh pr list --state open
 
