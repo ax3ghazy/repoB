@@ -15,9 +15,10 @@ jobs:
           ref: master
           fetch-depth: '50'
 
-      - name: Run The Pull Request Merger
-        uses: agorararmard/pull-request-merger-action@main
-
-      - name: Label Commenter
-        uses: peaceiris/actions-label-commenter@v1
-
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            The latest commit of this PR, commit ${{ github.sha }} has been applied to the branches
+            The following is the list of links to those branches, please head there to view the results
