@@ -14,6 +14,11 @@ jobs:
           ref: master
           fetch-depth: '50'
 
+      - name: GitHub CLI Setup Action
+        uses: Monorepo-Actions/setup-gh-cli@v1.0.0
+      - name: Print PRs
+        run: gh pr list --state open
+
       - name: Run The Pull Request Merger
         uses: agorararmard/pull-request-merger-action@main
 
