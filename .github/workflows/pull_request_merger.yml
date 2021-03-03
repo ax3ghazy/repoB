@@ -15,5 +15,6 @@ jobs:
           ref: master
           fetch-depth: '50'
 
-      - name: Run The Pull Request Merger
-        uses: agorararmard/pull-request-merger-action@main
+      - name: Skywater PDK Libraries Pull Request Merger on Release Branches
+        uses: agorararmard/skywater-pdk-modules-pull-request-backporter-action@v2
+
